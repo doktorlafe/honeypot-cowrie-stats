@@ -7,6 +7,9 @@ commands executed and malware sample counts.
 No dependencies beyond Python 3.10+, no database server, no JavaScript on the
 output page. It reads an SQLite archive read-only and writes plain HTML + JSON.
 
+**Live example:** [attacks.laferrari.eu](https://attacks.laferrari.eu) — a real
+deployment, ~320 000 sessions collected over 3.5 months.
+
 ![Screenshot of the generated page](docs/screenshot.png)
 
 ## Why
