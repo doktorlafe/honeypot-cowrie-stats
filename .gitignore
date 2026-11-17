@@ -1,0 +1,11 @@
+*.log
+__pycache__/
+*.pyc
+.DS_Store
+results/
+
+# Výstupy benchmark agentů (vznikají při běhu scripts/benchmark-*.sh)
+tasks/task1/sort_by_date.py
+tasks/task2/index.html
+tasks/task3/count_lines.sh
+tasks/task4/json2csv.py
