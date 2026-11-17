@@ -1,5 +1,7 @@
 # cowrie-stats
 
+[![Live example](https://img.shields.io/badge/LIVE-attacks.laferrari.eu-f0a500?style=for-the-badge&labelColor=0b0e14)](https://attacks.laferrari.eu)
+
 Turn a [Cowrie](https://github.com/cowrie/cowrie) honeypot archive into a static
 statistics page: attack timeline, countries, networks, credentials tried,
 commands executed and malware sample counts.
@@ -7,8 +9,11 @@ commands executed and malware sample counts.
 No dependencies beyond Python 3.10+, no database server, no JavaScript on the
 output page. It reads an SQLite archive read-only and writes plain HTML + JSON.
 
-**Live example:** [attacks.laferrari.eu](https://attacks.laferrari.eu) — a real
-deployment, ~320 000 sessions collected over 3.5 months.
+> ### ▶ [See it running on my own server](https://attacks.laferrari.eu)
+>
+> Every number on [**attacks.laferrari.eu**](https://attacks.laferrari.eu) comes
+> from this tool reading a real Cowrie archive: **~320 000 sessions** from
+> **15 000+ unique IPs** since August 2026. Nothing is mocked.
 
 ![Screenshot of the generated page](docs/screenshot.png)
 
