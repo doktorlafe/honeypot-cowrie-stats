@@ -1,29 +1,42 @@
 # CLAUDE.md — cowrie-stats
 
-Pravidla pro Claude agenty pracující v tomto projektu.
-
 ## Účel
 
-_Co projekt dělá a proč existuje. Doplň první._
+Veřejný open-source nástroj: přečte archiv Cowrie honeypotu v SQLite a vygeneruje
+statickou stránku se statistikami útoků (časová osa, země, ASN, zkoušená hesla
+a příkazy) plus `data.json`.
 
-## Jak rozjet paralelní agenty
+Projekt je **veřejný** — README anglicky, kód a komentáře česky. Nikdy do něj
+nepatří reálná data z provozu ani osobní cesty a domény; vše jde přes proměnné
+prostředí (`SITE_NAME`, `SITE_URL`, `SITE_LABEL`).
 
-```bash
-bash scripts/paralelni-agenti.sh "Zadání 1" "Zadání 2" [...]
+## Struktura
+
 ```
-
-- Každý agent pracuje JEN ve své složce `results/agenti/agentN/` → žádné konflikty.
-- Log agenta: `results/agenti/agentN.log`.
-- Volitelný model: `MODEL=claude-sonnet-5 bash scripts/paralelni-agenti.sh "..."`.
+generate.py          generátor stránky (stdlib, žádné závislosti)
+geoip.py             DB-IP Lite → země a ASN, hledání přes bisect
+schema.sql           očekávané schéma archivu (zdroj: Cowrie, BSD-3-Clause)
+sample/make_sample.py syntetická data pro vyzkoušení (RFC 5737 adresy)
+docs/                screenshot a poznámky
+```
 
 ## Pravidla
 
-- Texty **česky**.
-- **Commituj po každém dokončeném úkolu.**
-- Úlohy mezi agenty jsou nezávislé — žádné sdílené soubory.
-- Dokumentace zůstává pravdivá — výsledky a čísla aktualizuj.
+- **Žádná reálná data v repu** — archivy, výstupy ani IP adresy. Hlídat i screenshoty.
+- Python 3.10+, jen standardní knihovna. Novou závislost dobře zdůvodnit.
+- Stránka nesmí obsahovat JavaScript (CSP `script-src 'none'` u nasazení).
+- `README.md` anglicky a pravdivě — čísla a postupy aktualizovat po změně.
+- Commituj po každém dokončeném úkolu.
 
-## Doporučené další čtení
+## Nasazení
 
-- `docs/` — design, plány, poznámky
-- `README.md` — přehled projektu
+Tenhle projekt je zdroj pravdy i pro ostrý provoz: kontejner `cowrie-report`
+v `~/projects/honeypot` mountuje tento adresář do `/app` a volá `generate.py`
+každou hodinu. Neupravovat kopii — žádná neexistuje.
+
+## Spouštění
+
+```bash
+python3 sample/make_sample.py --out sample.db --days 30
+python3 generate.py --db sample.db --out out
+```
