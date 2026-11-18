@@ -15,7 +15,7 @@ output page. It reads an SQLite archive read-only and writes plain HTML + JSON. 
 > from this tool reading a real Cowrie archive: **~320 000 sessions** from
 > **15 000+ unique IPs** since August 2026. Nothing is mocked. 🛡️
 
-![Screenshot of the generated page](docs/screenshot.png)
+<img width="2752" height="1536" alt="Gemini_Generated_Image_jlyxxnjlyxxnjlyx" src="https://github.com/user-attachments/assets/026db7e1-ca14-43e7-ac8c-09ed4dc2cbe0" />
 
 ## 🤔 Why
 
